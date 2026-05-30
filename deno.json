@@ -1,0 +1,7 @@
+{
+  "fmt": {
+    "include": ["**/*.md", "**/*.json", "**/*.jsonc"],
+    "exclude": ["**/TRANSCRIPT.md", "**/*.mp4"],
+    "proseWrap": "preserve"
+  }
+}

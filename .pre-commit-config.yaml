@@ -1,0 +1,31 @@
+# Pre-commit hooks for the Live-Streaming repo.
+#   Markdown + JSON  -> deno fmt   (canonical formatting)
+#   Python           -> ruff       (lint --fix, then format)
+#
+# Setup:    pre-commit install        # one-time, installs the git hook
+# Run all:  pre-commit run --all-files
+#
+# Tools used (already on this machine): deno, and ruff via `uvx`.
+repos:
+  - repo: local
+    hooks:
+      - id: deno-fmt
+        name: deno fmt (markdown + json)
+        entry: deno fmt
+        language: system
+        types_or: [markdown, json]
+        exclude: '(^|/)TRANSCRIPT\.md$'
+
+      - id: ruff-check
+        name: ruff check (python)
+        entry: uvx ruff check --fix --force-exclude
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+
+      - id: ruff-format
+        name: ruff format (python)
+        entry: uvx ruff format --force-exclude
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
